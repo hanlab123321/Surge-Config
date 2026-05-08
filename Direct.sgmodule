@@ -1,0 +1,23 @@
+
+#!name=NUAA Direct
+#!desc=NUAA 域名直连
+
+[Rule]
+DOMAIN-SUFFIX,nuaa.edu.cn,DIRECT
+
+DOMAIN-SUFFIX,cell.com,DIRECT
+
+DOMAIN-SUFFIX,sciencedirect.com,DIRECT
+
+DOMAIN-SUFFIX,pnas.org,DIRECT
+
+DOMAIN-SUFFIX,wiley.com,DIRECT
+
+DOMAIN-SUFFIX,aps.org,DIRECT
+
+DOMAIN-SUFFIX,science.org,DIRECT
+
+
+
+
+
