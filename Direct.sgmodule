@@ -1,23 +1,29 @@
+#!name=NUAA & Feishu Fix
+#!desc=包含 NUAA 学术域名直连及飞书审批中心连接修复
 
-#!name=NUAA Direct
-#!desc=NUAA 域名直连
+[General]
+# 追加飞书域名到跳过列表，确保飞书流量不经过 Surge 内核处理
+skip-proxy = %APPEND% *.feishu.cn, *.pstatp.com, *.snssdk.com
+
+[Host]
+# 强制飞书使用系统原生 DNS 解析，解决 10s 连接超时问题
+*.feishu.cn = server:syslib
 
 [Rule]
+# --- 飞书修复规则 (优先级最高) ---
+DOMAIN-SUFFIX,feishu.cn,DIRECT
+
+# --- NUAA 校园网直连 ---
 DOMAIN-SUFFIX,nuaa.edu.cn,DIRECT
 
+# --- 学术资源直连 ---
 DOMAIN-SUFFIX,cell.com,DIRECT
-
 DOMAIN-SUFFIX,sciencedirect.com,DIRECT
-
 DOMAIN-SUFFIX,pnas.org,DIRECT
-
 DOMAIN-SUFFIX,wiley.com,DIRECT
-
 DOMAIN-SUFFIX,aps.org,DIRECT
-
 DOMAIN-SUFFIX,science.org,DIRECT
 
-
-
-
-
+[MITM]
+# 排除飞书域名，防止 HTTPS 解密导致审批页面安全报错
+hostname = %APPEND% -*.feishu.cn
