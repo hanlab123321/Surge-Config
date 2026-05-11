@@ -1,29 +1,34 @@
 #!name=NUAA & Feishu Fix
-#!desc=包含 NUAA 学术域名直连及飞书审批中心连接修复
+#!desc=NUAA 学术资源直连 + 飞书审批/长连接修复(Enhanced Mode 适配)
 
 [General]
-# 追加飞书域名到跳过列表，确保飞书流量不经过 Surge 内核处理
-skip-proxy = %APPEND% *.feishu.cn, *.pstatp.com, *.snssdk.com
+# 关键:对飞书域名跳过 fake IP,使用真实 DNS 解析
+# 这是 Enhanced Mode 下解决飞书长连接 10s 超时的核心
+always-real-ip = %APPEND% *.feishu.cn, *.feishucdn.com, *.larkoffice.com, *.bytedance.com
 
-[Host]
-# 强制飞书使用系统原生 DNS 解析，解决 10s 连接超时问题
-*.feishu.cn = server:syslib
+# 系统代理模式下绕过飞书(双保险)
+skip-proxy = %APPEND% *.feishu.cn, *.feishucdn.com, *.larkoffice.com, *.pstatp.com, *.snssdk.com
 
 [Rule]
-# --- 飞书修复规则 (优先级最高) ---
+# === 飞书相关(最高优先级,强制直连) ===
 DOMAIN-SUFFIX,feishu.cn,DIRECT
+DOMAIN-SUFFIX,feishucdn.com,DIRECT
+DOMAIN-SUFFIX,larkoffice.com,DIRECT
+DOMAIN-SUFFIX,bytedance.com,DIRECT
 
-# --- NUAA 校园网直连 ---
+# === NUAA 校园网 ===
 DOMAIN-SUFFIX,nuaa.edu.cn,DIRECT
 
-# --- 学术资源直连 ---
+# === 学术资源(需校园 IP / NUAA VPN 才有访问权) ===
 DOMAIN-SUFFIX,cell.com,DIRECT
 DOMAIN-SUFFIX,sciencedirect.com,DIRECT
+DOMAIN-SUFFIX,els-cdn.com,DIRECT
 DOMAIN-SUFFIX,pnas.org,DIRECT
 DOMAIN-SUFFIX,wiley.com,DIRECT
+DOMAIN-SUFFIX,onlinelibrary.wiley.com,DIRECT
 DOMAIN-SUFFIX,aps.org,DIRECT
 DOMAIN-SUFFIX,science.org,DIRECT
 
 [MITM]
-# 排除飞书域名，防止 HTTPS 解密导致审批页面安全报错
-hostname = %APPEND% -*.feishu.cn
+# 防御性排除:即便托管配置某天打开 MITM,也不会影响飞书
+hostname = %APPEND% -*.feishu.cn, -*.feishucdn.com, -*.larkoffice.com
