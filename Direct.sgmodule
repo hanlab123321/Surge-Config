@@ -20,7 +20,7 @@ DOMAIN-SUFFIX,bytedance.com,DIRECT
 DOMAIN-SUFFIX,nuaa.edu.cn,DIRECT
 
 # === TODESK ===
-DOMAIN-SUFFIX,authds.todesk.com,DIRECT
+DOMAIN-SUFFIX,todesk.com,DIRECT
 
 # === 学术资源(需校园 IP / NUAA VPN 才有访问权) ===
 DOMAIN-SUFFIX,cell.com,DIRECT
