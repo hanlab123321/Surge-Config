@@ -21,6 +21,8 @@ DOMAIN-SUFFIX,nuaa.edu.cn,DIRECT
 
 # === TODESK ===
 DOMAIN-SUFFIX,todesk.com,DIRECT
+PROCESS-NAME, ToDesk, DIRECT
+PROCESS-NAME, ToDesk_Service, DIRECT
 
 # === 学术资源(需校园 IP / NUAA VPN 才有访问权) ===
 DOMAIN-SUFFIX,cell.com,DIRECT
