@@ -19,6 +19,9 @@ DOMAIN-SUFFIX,bytedance.com,DIRECT
 # === NUAA 校园网 ===
 DOMAIN-SUFFIX,nuaa.edu.cn,DIRECT
 
+# === TODESK ===
+DOMAIN-SUFFIX,authds.todesk.com,DIRECT
+
 # === 学术资源(需校园 IP / NUAA VPN 才有访问权) ===
 DOMAIN-SUFFIX,cell.com,DIRECT
 DOMAIN-SUFFIX,sciencedirect.com,DIRECT
